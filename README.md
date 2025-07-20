@@ -11,7 +11,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini secara lokal.
 
 1.  **Clone Repositori**
     ```bash
-    git clone [https://github.com/](https://github.com/)[NAMA_USER_GITHUB_ANDA]/[NAMA_REPOSITORI_ANDA].git
+    git clone https://github.com/daftartugaslaravelapi/api-manajemen-tugas-pribadi.git
     ```
 
 2.  **Masuk ke Direktori Proyek**
