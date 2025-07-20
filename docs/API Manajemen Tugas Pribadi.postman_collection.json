@@ -1,0 +1,702 @@
+{
+	"info": {
+		"_postman_id": "1f70b93e-4451-4001-9f1b-5bf1b43fc7ee",
+		"name": "API Manajemen Tugas Pribadi",
+		"description": "API ini digunakan untuk mengelola data tugas pribadi.  \n**Autentikasi:**  \nUntuk mengakses endpoint yang terproteksi, Anda harus login terlebih dahulu melalui endpoint `POST /api/login`.  \nGunakan `access_token` yang didapat dari response login sebagai **Bearer Token** pada header `Authorization`.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46906091",
+		"_collection_link": "https://daftartugas.postman.co/workspace/Daftar-Tugas's-Workspace~7190935a-dc00-42df-8c20-7262645a1cd1/collection/46906091-1f70b93e-4451-4001-9f1b-5bf1b43fc7ee?action=share&source=collection_link&creator=46906091"
+	},
+	"item": [
+		{
+			"name": "[POST] Register User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Cahaya Bunga\",\r\n    \"no_hp\": \"081288876761\",\r\n    \"email\": \"bunga@gmail.com\",\r\n    \"password\": \"bunga123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				},
+				"description": "Endpoint ini untuk mendaftarkan pengguna baru.  \n**Body Parameters:**\n\n- `name` (string, required)\n    \n- `no_hp` (string, required, unique)\n    \n- `email` (string, required, unique)\n    \n- `password` (string, required, min: 6)"
+			},
+			"response": [
+				{
+					"name": "Pendaftran Berhasil",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cahaya Bunga\",\r\n    \"no_hp\": \"081288876761\",\r\n    \"email\": \"bunga@gmail.com\",\r\n    \"password\": \"bunga123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 20 Jul 2025 12:10:02 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 20 Jul 2025 12:10:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.9"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Pendaftaran berhasil!\",\n    \"user\": {\n        \"name\": \"Cahaya Bunga\",\n        \"no_hp\": \"081288876761\",\n        \"email\": \"bunga@gmail.com\",\n        \"updated_at\": \"2025-07-20T12:10:02.000000Z\",\n        \"created_at\": \"2025-07-20T12:10:02.000000Z\",\n        \"id\": 3\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[POST] Login & Get Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Script untuk mengambil token dari response dan menyimpannya\r",
+							"const response = pm.response.json();\r",
+							"if (response.access_token) {\r",
+							"    pm.collectionVariables.set(\"API_TOKEN\", response.access_token);\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"riski@gmail.com\",\r\n    \"password\": \"riski123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "_Endpoint_ ini menghasilkan _access_token_"
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"riski@gmail.com\",\r\n    \"password\": \"riski123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 20 Jul 2025 12:05:00 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 20 Jul 2025 12:05:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.9"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzUzMDEzMTAwLCJleHAiOjE3NTMwMTY3MDAsIm5iZiI6MTc1MzAxMzEwMCwianRpIjoiZmtZSVgyTEdyRlpHS0lxciIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.p7dG1bl0b1JJjzvIFtc8S2szff0ZiQL_8-NDUvzn6-k\",\n    \"token_type\": \"bearer\",\n    \"expires_in\": 3600\n}"
+				}
+			]
+		},
+		{
+			"name": "[POST] Tambah Daftar Tugas Baru",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzUzMDAyNjY5LCJleHAiOjE3NTMwMDYyNjksIm5iZiI6MTc1MzAwMjY2OSwianRpIjoiR0E0aXc3STFNSE14RDVDWSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.YRvducJ0rBmlFZHVf3Ljki_x6jFCQzRUKJeX_4NZ8L4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"judul\": \"Belajar Jaringan\",\r\n    \"deskripsi\": \"Target dalam waktu 3 hari sudah bisa menggunakan simulator jaringan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/tasks",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				},
+				"description": "Endpoint ini untuk membuat tugas baru. Memerlukan autentifikasi Bearer Token\n\n**Headers:**\n\n- Authorization: Bearer API_TOKEN\n    \n\n**Body Parameters:**\n\n- judul (string, required)\n    \n- deskripsi (string, required)"
+			},
+			"response": []
+		},
+		{
+			"name": "[GET] Tampilkan Semua Data Daftar Tugas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzUzMDAyNjY5LCJleHAiOjE3NTMwMDYyNjksIm5iZiI6MTc1MzAwMjY2OSwianRpIjoiR0E0aXc3STFNSE14RDVDWSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.YRvducJ0rBmlFZHVf3Ljki_x6jFCQzRUKJeX_4NZ8L4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/tasks",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				},
+				"description": "**Endpoint** untuk mengambil semua daftar tugas milik pengguna yang sedang login. Wajib menggunakan **otentikasi Bearer Token**."
+			},
+			"response": []
+		},
+		{
+			"name": "[GET] Tampilkan 1 Data Daftar Tugas berdasarkan ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzUzMDAyNjY5LCJleHAiOjE3NTMwMDYyNjksIm5iZiI6MTc1MzAwMjY2OSwianRpIjoiR0E0aXc3STFNSE14RDVDWSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.YRvducJ0rBmlFZHVf3Ljki_x6jFCQzRUKJeX_4NZ8L4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/tasks/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tasks",
+						"5"
+					]
+				},
+				"description": "Endpoint untuk mengambil detail satu tugas spesifik berdasarkan ID. Wajib menggunakan otentikasi Bearer Token\n\n**URL Params:**\n\n- id (integer, required): ID unik dari tugas yang ingin dilihat."
+			},
+			"response": []
+		},
+		{
+			"name": "[PUT] Update Data Daftar Tugas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzUzMDAyNjY5LCJleHAiOjE3NTMwMDYyNjksIm5iZiI6MTc1MzAwMjY2OSwianRpIjoiR0E0aXc3STFNSE14RDVDWSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.YRvducJ0rBmlFZHVf3Ljki_x6jFCQzRUKJeX_4NZ8L4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"judul\": \"Belajar PYTHON (SUDAH DIEDIT)\",\r\n    \"status_selesai\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/tasks/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tasks",
+						"5"
+					]
+				},
+				"description": "Endpoint untuk memperbarui tugas berdasarkan ID. Wajib menggunakan otentikasi Bearer Token.  \n**URL Params:**\n\n- id (integer, required): ID dari tugas yang akan diupdate.\n    \n\n**Body Parameters:**\n\n- judul (string, optional)\n    \n- deskripsi (string, optional)\n    \n- status_selesai (boolean, optional)"
+			},
+			"response": []
+		},
+		{
+			"name": "[DELETE] Hapus Data Daftar Tugas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzUzMDAyNjY5LCJleHAiOjE3NTMwMDYyNjksIm5iZiI6MTc1MzAwMjY2OSwianRpIjoiR0E0aXc3STFNSE14RDVDWSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.YRvducJ0rBmlFZHVf3Ljki_x6jFCQzRUKJeX_4NZ8L4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/tasks/4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tasks",
+						"4"
+					]
+				},
+				"description": "Endpoint untuk menghapus tugas berdasarkan ID. Wajib menggunakan otentikasi Bearer Token.  \n**URL Params:**\n\n- id (integer, required): ID dari tugas yang akan dihapus."
+			},
+			"response": []
+		},
+		{
+			"name": "[GET] Cari Daftar Tugas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzUzMDAyNjY5LCJleHAiOjE3NTMwMDYyNjksIm5iZiI6MTc1MzAwMjY2OSwianRpIjoiR0E0aXc3STFNSE14RDVDWSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.YRvducJ0rBmlFZHVf3Ljki_x6jFCQzRUKJeX_4NZ8L4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/tasks/search?keyword=hauis",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tasks",
+						"search"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "hauis"
+						}
+					]
+				},
+				"description": "Endpoint untuk mencari tugas berdasarkan kata kunci. Pencarian dilakukan pada kolom judul dan deskripsi. Wajib menggunakan otentikasi Bearer Token.\n\n**Query Params:**\n\n- keyword (string, required): Kata kunci yang ingin dicari.\n    \n\n**Response Sukses:**\n\n- 200 OK: Mengembalikan array dari objek tugas yang cocok.\n    \n- 404 Not Found: Mengembalikan pesan error jika tidak ada tugas yang cocok."
+			},
+			"response": []
+		},
+		{
+			"name": "[POST] Cek Validasi Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"\",\r\n    \"no_hp\": \"089876543210\",\r\n    \"email\": \"riski@gmail.com\",\r\n    \"password\": \"ris\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				},
+				"description": "Endpoint ini untuk mengecek validasi pada atribut setiap data user ketika melakukan registrasi"
+			},
+			"response": []
+		},
+		{
+			"name": "[POST] Cek Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzUzMDA4NDkxLCJleHAiOjE3NTMwMTIwOTEsIm5iZiI6MTc1MzAwODQ5MSwianRpIjoiclBZNmtUdkIycUp5eGJISSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.PS4tWonfGJAEKTsNJIQNEarq6qBhu-ep6ZkcsgJd_UI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"riski@gmail.com\",\r\n    \"password\": \"riski123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				},
+				"description": "Endpoint ini untuk melakukan logout dari sistem"
+			},
+			"response": []
+		},
+		{
+			"name": "[GET] Cek Data User Login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzUzMDA4NzIwLCJleHAiOjE3NTMwMTIzMjAsIm5iZiI6MTc1MzAwODcyMCwianRpIjoiSExhUndVYkdScVpkZ0N4dCIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.vAALmxwBsA5JNYSuA2T2s_BuaYi-ADej-Frb6D5mGHg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"riski@gmail.com\",\r\n    \"password\": \"riski123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/me",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"me"
+					]
+				},
+				"description": "Endpoint ini untuk melihat data pengguna yang sedang login"
+			},
+			"response": []
+		},
+		{
+			"name": "[GET] Error Handling",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/tasks",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				},
+				"description": "Jika user belum login dan akses halaman data daftar tugas maka akan muncul response \"Anda harus login untuk akses halaman ini.\""
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "API_TOKEN",
+			"value": ""
+		}
+	]
+}
