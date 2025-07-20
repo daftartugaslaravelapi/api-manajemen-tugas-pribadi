@@ -1,7 +1,14 @@
 # Judul Proyek: API Layanan Manajemen Tugas Pribadi
 
 ## Deskripsi Singkat
-Sebuah web service (API) RESTful yang dibangun menggunakan Laravel 10 untuk mengelola data tugas pribadi. Sistem ini menyediakan fungsionalitas untuk autentikasi pengguna menggunakan JWT serta operasi CRUD (Create, Read, Update, Delete, Search) untuk data tugas.
+Sebuah web service (API) RESTful yang dibangun menggunakan **Laravel 10** untuk mengelola data tugas pribadi. Sistem ini menyediakan fungsionalitas untuk autentikasi pengguna menggunakan **JSON Web Tokens (JWT)** serta operasi **CRUDS** (Create, Read, Update, Delete, Search) untuk data tugas, lengkap dengan fitur pencarian dan pencatatan aktivitas.
+
+---
+
+## Anggota Kelompok
+1.  **Jihan Maulita Nabila** (NIM: 2203030019)
+2.  **Nama Lengkap Anggota** (NIM: 2203030004)
+3.  **M Puad Bawazir** (NIM: 1901010241)
 
 ---
 
@@ -41,7 +48,16 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini secara lokal.
     ```
 
 6.  **Konfigurasi Database**
-    Buka file `.env` dan sesuaikan pengaturan database Anda (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`). Pastikan Anda sudah membuat database kosong dengan nama yang sesuai.
+    Buka file `.env` dan sesuaikan pengaturan database berikut dengan konfigurasi lokal Anda:
+    ```
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=db_personal_task_api
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+    *Pastikan Anda sudah membuat sebuah database kosong dengan nama yang sesuai.*
 
 7.  **Jalankan Migrasi dan Seeder**
     Perintah ini akan membuat semua tabel dan mengisinya dengan data awal (akun uji coba).
@@ -50,11 +66,12 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini secara lokal.
     ```
 
 8.  **Generate JWT Secret Key**
+    Buat kunci rahasia untuk autentikasi JWT.
     ```bash
     php artisan jwt:secret
     ```
 
-9.  **Jalankan Server**
+10.  **Jalankan Server**
     ```bash
     php artisan serve
     ```
@@ -63,7 +80,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini secara lokal.
 ---
 
 ## Informasi Akun Uji Coba
-Anda bisa menggunakan akun berikut untuk melakukan login dan pengujian pada endpoint yang terproteksi.
+Gunakan akun berikut untuk melakukan login dan pengujian pada endpoint yang terproteksi.
 
 -   **Email**: `jihan@gmail.com`
 -   **Password**: `password`
@@ -71,8 +88,8 @@ Anda bisa menggunakan akun berikut untuk melakukan login dan pengujian pada endp
 ---
 
 ## Dokumentasi API
-Dokumentasi lengkap untuk semua endpoint, termasuk contoh request dan response, tersedia dalam bentuk Postman Collection.
+Dokumentasi lengkap untuk semua endpoint, termasuk parameter, contoh request, dan contoh response (baik sukses maupun gagal), tersedia dalam bentuk **Postman Collection**.
 
-File dokumentasi dapat ditemukan di dalam folder `docs/` pada repositori ini atau diimpor langsung ke Postman menggunakan tautan di bawah ini (setelah Anda mengunggahnya).
+File dokumentasi dapat ditemukan di dalam folder `docs/` pada repositori ini atau diimpor langsung ke Postman menggunakan tautan di bawah ini.
 
-https://daftartugas.postman.co/workspace/Daftar-Tugas's-Workspace~7190935a-dc00-42df-8c20-7262645a1cd1/request/46906091-07a12db0-82ae-4d6b-8b7d-a822e1a50b48?action=share&creator=46906091&ctx=documentation
+https://daftartugas.postman.co/workspace/Daftar-Tugas's-Workspace~7190935a-dc00-42df-8c20-7262645a1cd1/example/46906091-161daaa0-80aa-4510-8086-eab2fc1647dd?action=share&creator=46906091&ctx=documentation
