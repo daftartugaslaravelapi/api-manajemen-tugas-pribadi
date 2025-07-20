@@ -7,7 +7,7 @@ Sebuah web service (API) RESTful yang dibangun menggunakan **Laravel 10** untuk 
 
 ## Anggota Kelompok
 1.  **Jihan Maulita Nabila** (NIM: 2203030019)
-2.  **Nama Lengkap Anggota** (NIM: 2203030004)
+2.  **Cahaya Bunga K** (NIM: 2203030004)
 3.  **M Puad Bawazir** (NIM: 1901010241)
 
 ---
